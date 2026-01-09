@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Sign up</title>
+        <link rel="stylesheet"  type="text/css" href="ASSIGNMENT.css">
+    </head>
+    <body>
+      <div id="modal" style="position: fixed; left: 0; top: 0; z-index: 999; height: 100%; width: 100%; display: none; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px);">
+        <div style="background-color: white; padding: 25px; position: relative; border-radius: 5px;">
+          <span id="close" style="position: absolute; top: 2px; right: 4px; cursor: pointer; font-size: 30px; font-weight: bolder; color: rgb(238, 5, 5); " >&times;</span>
+          <p id="modal-content" style="color: black;"></p>
+        </div>
+      </div>
+      </div>
+      <form id="form">
+        <h1 id="page">Sign Up</h1><br>
+        <h3 id="welcomee"><marquee>Welcome to our space!</marquee></h3>
+        <input type="text" placeholder="  Full Name"  id="name" ><br>
+        <p id="name msg" style="color: red; background: white; font-size: medium; "></p><br>
+        <input type="email" placeholder="  Email"  id="email"><br>
+        <p id="mailpass" style="color: red; background: transparent; font-size: medium;"></p><br>
+        <input type="password" placeholder="  Password"  id="password" minlength="8" maxlength="8" ><br>
+        <p id="passtext" style="color: red; background: white; font-size: medium;"></p><br>
+        <input type="password" placeholder="  Confirm Password"  id="verifypassword"><br>
+         <p id="verify" style="color: red; background: white; font-size: medium;"></p><br>
+        <button type="submit" id="Signup">Sign Up</button><br>
+        <p><div id="spaann"></div><h3 id="orr">Or</h3><div id="sppan"></div></p> 
+        <button id="btnns"><a href="https://google.com" target="_blank"></a>Sign up with Google</button><br>
+        <button id="btoons"><a href="https://apple.com" target="_blank"></a>Sign up with Apple</button><br>     
+       <!-- <p id="error" style="color: green; background: transparent; font-size: large; "> </p> <br> -->
+      </form>        
+    <script>
+    console.log("My script is running");
+let form = 
+document.getElementById("form");
+let email = 
+document.getElementById("email");
+let password =
+document.getElementById("password");
+let confirmPassword =
+document.getElementById("verifypassword");
+let username =
+document.getElementById("name");
+let namemsg =
+document.getElementById("name msg");
+let pass = 
+document.getElementById("passtext");
+let mail = 
+document.getElementById("mailpass");
+let verify = 
+document.getElementById("verify");
+let popupMessage =
+document.getElementById("error");
+let modal =
+document.getElementById('modal')
+let modalContent = 
+document.getElementById("modal-content");
+let closeModal =
+document.getElementById("close");
+
+function showPopup(message) {
+  modalContent.textContent = message;
+  modal.style.display = 'flex';
+}
+function hidePopup() {
+  modal.style.display = "none";
+}
+closeModal.addEventListener("click", hidePopup);
+window.onclick = (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+}
+form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        mail.textContent ="";
+        namemsg.textContent = "";
+        pass.textContent = "";
+        verify.textContent = "";
+        console.log("my button was clicked");
+    if (username.value === "" && email.value === "" && password.value ==="" && confirmPassword.value === "") {
+      showPopup("Complete your entries to proceed.");
+       return;
+    }    
+    else if  (username.value.trim() === "") {
+        namemsg.textContent = ("Input a valid username to proceed");
+        return;
+    }
+    else if  (email.value.trim() === "") {
+        mail.textContent = ("Error  ❌ ! Please input a valid email address to proceed.");
+        console.log(email.value);
+        return;
+    }
+    else if (password.value.trim() === "") {
+        pass.textContent = ("Error  ❌ !Input a valid password.");      
+        console.log(password.value);
+        return;   
+    }
+    else if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8}$/.test(password.value.trim())) {
+        pass.textContent = ("Password must follow the format Abcdef(symbol)(number 0-9)");
+        return;
+    }
+    else if (confirmPassword.value.trim() === "") {
+      verify.textContent = ("Confirm your password");
+      return;
+    }
+    else if (password.value.trim() !== confirmPassword.value.trim()) {
+      verify.textContent = ("Passwords do not match! 😕");
+      return;
+    }
+    
+    else {
+      showPopup("Congratulations! " +  username.value + "☺️" + " you have submitted your entry successfully");
+      form.reset();
+    }
+  });
+
+ </script>
+ </body>
+    </html>
+    <!-- let popup = 
+document.getElementById("popup");
+let closePopup =
+document.getElementById("closepopup"); 
+function showPopup(message) {
+    popupMessage.textContent = message;
+    popup.classList.add("hidden");
+}
+function hidePopup() {
+      popup.classList.remove("hidden");
+            // popup.style.display = "none";
+}
+
+closePopup.addEventListener("click", hidePopup); -->
+  <!-- <div id="popup"> -->
+             <!--   <button id="closepopup">OK</button>
+        </div> -->
